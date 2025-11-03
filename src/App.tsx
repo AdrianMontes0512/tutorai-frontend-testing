@@ -8,11 +8,12 @@ function App() {
   const [jwt, setJwt] = useState<string | null>(null);
 
   const handleSuccess = async (credentialResponse: any) => {
+    console.log("Credential Response completo:", credentialResponse);
     const idToken = credentialResponse.credential;
     setIdToken(idToken);
     console.log("Google ID Token:", idToken);
 
-    const res = await fetch("http://localhost:8080/auth/google", {
+    const res = await fetch("https://applumi.group-utility.com/grupo1-api/auth/google", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ idToken }),
